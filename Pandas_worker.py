@@ -1,14 +1,6 @@
 import numpy as np
 import pandas as pd
 
-# A = np.array([1, 1, 2, 2, 'three', 'three'])
-# B = np.array(['start', 'end']*3)
-# C = [[42],[42],[42],[42],[42],[42]]
-# max_len = max(len(sublist) for sublist in C)
-# for sublist in C:
-#     sublist.extend([np.nan] * (max_len - len(sublist)))
-# C = np.array(C)
-# df = pd.DataFrame(data=C.T, columns=pd.MultiIndex.from_tuples(zip(A,B)))
 
 def prepare_data(data, first_dim=0, sec_dim=1, third_dim=2):
         first_dimension_data= []
@@ -21,6 +13,7 @@ def prepare_data(data, first_dim=0, sec_dim=1, third_dim=2):
 
         return[np.array(first_dimension_data), np.array(sec_dimension_data), np.array(third_dimension_data)]
 
+
 def create_3d_dataframe(dimensions_data):
         first_dimension_data = dimensions_data[0]
         sec_dimension_data = dimensions_data[1]
@@ -31,6 +24,7 @@ def create_3d_dataframe(dimensions_data):
                                          columns=pd.MultiIndex.from_tuples(zip(first_dimension_data, sec_dimension_data)))
 
         return three_d_dataframe
+
 
 def parse_3d_dataframe(dataframe, first_dim_key="-", sec_dim_key="-", third_dim_key="-"):
         first_dim = []
@@ -44,7 +38,8 @@ def parse_3d_dataframe(dataframe, first_dim_key="-", sec_dim_key="-", third_dim_
             third_dim.append(dataframe[dim1][dim2][0])
 
         return [np.array(first_dim), np.array(second_dim), np.array(third_dim)]
-    
+
+
 def merge_3d_dataframe(dataframe_first, dataframe_sec):
         data_to_merge = parse_3d_dataframe(dataframe_first)
         data_merged = parse_3d_dataframe(dataframe_sec)
@@ -64,6 +59,7 @@ def merge_3d_dataframe(dataframe_first, dataframe_sec):
         new_dataframe = create_3d_dataframe(data)
 
         return new_dataframe
+
 
 def compare_data(data):
         lenght = len(data[0]) - 1

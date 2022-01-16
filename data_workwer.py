@@ -107,6 +107,7 @@ def calculate_new_factor_res(facrotrs, reses, divisible_f, divider_f, years):
 
     return new_factor_dict
 
+
 def parse_dataframe_data(data, key1='-', key2='-', key3='-'):
     first_dim = list(data[0])
     sec_dim = list(data[1])
